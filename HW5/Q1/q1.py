@@ -3,11 +3,11 @@
 import os
 
 
-with open("/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/HW5/Q1/text.txt", "r") as f:
+with open("/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q1/text.txt", "r") as f:
     lower = f.readline()
     upper = f.readline()
 
-file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/HW5/Q1/mytext.txt"
+file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q1/mytext.txt"
 
 if not os.path.exists(file_path):
     with open(file_path, "w") as f:

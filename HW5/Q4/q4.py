@@ -2,7 +2,7 @@
 # from icecream import ic
 import numpy as np
 
-file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/HW5/Q4/laliga-2023.txt"
+file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q4/laliga-2023.txt"
 
 def check(table, column):
     max_value = max(table[:,column])

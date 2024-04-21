@@ -2,7 +2,7 @@
 import numpy as np
 from icecream import ic
 
-file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/HW5/Q2/doc.txt"
+file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q2/doc.txt"
 
 def macDetection(array):
     row, column = np.shape(array)

@@ -61,7 +61,7 @@ def decode_image(img):
 # pick a .png or .bmp file you have in the working directory
 # or give full path name
 
-original_image_file = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/HW5/Q3/picture.bmp"
+original_image_file = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q3/picture.bmp"
 #original_image_file = "Beach7.bmp"
 
 img = Image.open(original_image_file)
