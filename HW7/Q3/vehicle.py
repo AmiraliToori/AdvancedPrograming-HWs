@@ -1,0 +1,107 @@
+
+
+
+class Vehicle:
+    
+    def __init__(self, price: int,
+                 cycle: int,
+                 speed: float,
+                 ) -> None:
+        self.price = price
+        self.cycle = cycle
+        self.speed = speed
+    
+    def __str__(self) -> str:
+        return f'''The price of this vehicle is {self.price} dollars,
+                    and have {self.cycle} cycles, which have {self.speed} speed.'''
+                    
+    
+    def __repr__(self) -> str:
+        return f'''{type(self)}, Price: {self.price} 
+                    Cycles: {self.cycle}, Speed: {self.speed}'''
+    
+    
+    def speedup(self, value: int) -> None:
+        self.speed += value
+        
+    
+    def brake(self, value: int) -> None:
+        self.speed -= value
+        
+        
+
+class Bicycle(Vehicle):
+    
+    def __init__(self, price: int,
+                 speed: int,
+                 gear: int) -> None:
+        self.cycle = 2
+        self.gear = gear
+        super().__init__(price = price,
+                         cycle = 2,
+                         speed = speed)
+    
+    
+    def __str__(self) -> str:                     
+        return f'''The price of this bicycle is: {self.price},
+                    The speed is: {self.speed},
+                    The number of gears: {self.gear},
+                    The count of cycles: {self.cycle}'''
+
+    def __repr__(self) -> str:
+        return f'''{type(self)}, Price: {self.price},
+                    Speed: {self.speed},
+                    Gears: {self.gear}
+                    Cycles: {self.cycle}'''
+
+class Tricycle(Vehicle):
+    
+    def __init__(self, price:int,
+                 speed: int,
+                 seat: int) -> None:
+        self.cycle = 3
+        self.seat = seat
+        super().__init__(price = price,
+                         cycle = 3,
+                         speed = speed)
+        
+    def __str__(self) -> str:                     
+        return f'''The price of this tricycle is: {self.price},
+                    The speed is: {self.speed},
+                    The number of seats: {self.seat},
+                    The count of cycles: {self.cycle}'''
+    
+    def __repr__(self) -> str:
+        return f'''{type(self)}, Price: {self.price},
+                    Speed: {self.speed},
+                    Seats: {self.seat}
+                    Cycles: {self.cycle}'''
+        
+class Motorcycle(Bicycle):
+    
+    def __init__(self, price: int,
+                 speed: int,
+                 gear: int,
+                 engine: str,
+                 power: int) -> None:
+        self.engine = engine
+        self.power = power
+        super().__init__(price = price,
+                         speed = speed,
+                         gear = gear)
+    
+    def __str__(self) -> str:                     
+        return f'''The price of this motorcycle is: {self.price},
+                    The speed is: {self.speed},
+                    The number of gears: {self.gear},
+                    The count of cycles: {self.cycle}
+                    The Engine Type is: {self.engine}
+                    The Power is: {self.power}'''
+                    
+    def __repr__(self) -> str:
+        return f'''{type(self)}, Price: {self.price},
+                    Speed: {self.speed},
+                    Gears: {self.gear}
+                    Cycles: {self.cycle}
+                    Engine: {self.engine}
+                    Power: {self.power}'''
