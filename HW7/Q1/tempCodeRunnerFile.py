@@ -1,2 +1,2 @@
-_course(151215))
-    print(str(amirali_toori))
+_1))
+    print(repr(course_1))
