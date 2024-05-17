@@ -12,13 +12,15 @@ class Student:
         self.lessons = lessons
         
     def __str__(self) -> str:
-        return f'''Student {self.name} with {self.std_id} who born in
-{self.birth_date} have these lessons: {self.lessons}'''
+        return f'''{self.name} student with {self.std_id} ID, Born in {self.birth_date} have these lessons: 
+{[lesson.lesson_title for lesson in self.lessons]} '''
         
     def __repr__(self) -> str:
-        return f'''type:{type(self)} , Student Name: {self.name},
-Student ID: {self.std_id}, BoD: {self.birth_date},
-Lessons: {self.lessons}'''
+        return f'''type:{type(self).__name__},
+Student Name:{self.name} ,
+Student ID:{self.std_id} ,
+BoD:{self.birth_date} ,
+Lessons:{self.lessons} '''
     
     
     def calculate_average(self) -> float:
@@ -64,6 +66,7 @@ Lessons: {self.lessons}'''
         else:
             raise ValueError("The lesson_id is not exist or not in the list of the courses that student have.")
 
+############################################################################################################################
 
 class Lesson:
     
@@ -82,14 +85,16 @@ class Lesson:
     
     
     def __str__(self) -> str:
-        return f'''The {self.lesson_title} with {self.lesson_id} ID, have 
-{self.credit} credit, the score situation is {self.score_announcement_status}
-and the score is {self.score}'''
+        return f'''Lesson {self.lesson_title} with {self.lesson_id} have {self.credit} credit(s), the score situation is
+{self.score_announcement_status} and the score is {self.score}.'''
                 
     def __repr__(self) -> str:
-        return f'''{type(self)}, Lesson ID: {self.lesson_id}, Lesson Title: {self.lesson_title},
-Credits: {self.credit},Score announcement status: {self.score_announcement_status}
-,Score: {self.score}'''
+        return f'''{type(self).__name__},
+Lesson ID: {self.lesson_id},
+Lesson Title: {self.lesson_title},
+Credits: {self.credit},
+Score announcement status: {self.score_announcement_status},
+Score: {self.score}.'''
         
         
     def submit_score(self, new_score: float) -> None:
@@ -132,7 +137,7 @@ if __name__ == "__main__":
     # print(repr(amirali_toori))
 
     # print(str(course_1))
-    # print(repr(course_2))
+    # print(repr(course_1))
 
     # print(course_3.score)
     # course_3.submit_score(20)
@@ -142,5 +147,5 @@ if __name__ == "__main__":
     # print(amirali_toori.change_score(151214, 20))
     # print(amirali_toori.calculate_average())
 
-    print(amirali_toori.drop_course(151215))
-    print(str(amirali_toori))
+    # print(amirali_toori.drop_course(151215))
+    # print(str(amirali_toori))
