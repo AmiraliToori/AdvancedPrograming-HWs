@@ -13,6 +13,7 @@ def check(table, column):
     min_index = np.where(table[:,column] == min_value)
     min_answer = np.squeeze(table[min_index, 0])
     
+    
     return max_answer, min_answer
 
 
