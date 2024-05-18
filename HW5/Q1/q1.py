@@ -1,5 +1,5 @@
 
-# from icecream import ic
+from icecream import ic
 import os
 
 
@@ -29,7 +29,9 @@ upper_to_lower_dict = dict(zip(upper, lower))
 
 
 my_text = my_text.split(' ')
+ic(my_text)
 my_text = ''.join(my_text)
+ic(my_text)
 my_text = list(my_text)
 
 def encryptText(my_text):
