@@ -24,4 +24,7 @@ Name: {self.name},
 Birth Date: {self.date_of_birth}
 Education: {self.education}
 Address: {self.address}'''
+
+    
+    
     
