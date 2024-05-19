@@ -29,46 +29,34 @@ upper_to_lower_dict = dict(zip(upper, lower))
 
 
 my_text = my_text.split(' ')
-ic(my_text)
 my_text = ''.join(my_text)
-ic(my_text)
 my_text = list(my_text)
+
 
 def encryptText(my_text):
     txt = my_text.copy()
-    for key in lower_to_upper_dict:
-        for char in my_text:
-            if char == key:
-                index = txt.index(char)
-                txt[index] = lower_to_upper_dict[key]
-                
-    for key in upper_to_lower_dict:
-        for char in my_text:
-            if char == key:
-                index = txt.index(char)
-                txt[index] = upper_to_lower_dict[key]
+    for count, char in enumerate(my_text):
+        if char in lower_to_upper_dict:
+            txt[count] = lower_to_upper_dict[char]
+        elif char in upper_to_lower_dict:
+            txt[count] = upper_to_lower_dict[char]            
     txt = ''.join(txt)
     return txt
 
 def decryptText(my_text):
     my_text = list(my_text)
     txt = my_text.copy()
-    for key in lower_to_upper_dict:
-        for char in my_text:
-            if char == key:
-                index = txt.index(char)
-                txt[index] = lower_to_upper_dict[key]
-                
-    for key in upper_to_lower_dict:
-        for char in my_text:
-            if char == key:
-                index = txt.index(char)
-                txt[index] = upper_to_lower_dict[key]
+    for count, char in enumerate(my_text):
+        if char in lower_to_upper_dict:
+            txt[count] = lower_to_upper_dict[char]
+        elif char in upper_to_lower_dict:
+            txt[count] = upper_to_lower_dict[char]
     txt = ''.join(txt)
     return txt
 
-print(f"The encrypted text is : {encryptText(my_text)}")
-print(f"The decrypted text is : {decryptText(encryptText(my_text))}")
+encrypted_text = encryptText(my_text)
+print(f"The encrypted text is : {encrypted_text}")
+print(f"The decrypted text is : {decryptText(encrypted_text)}")
 
 
 
