@@ -1,7 +1,6 @@
 
-
 import pygame as pg
-from random import choice, randint
+from extra import Shape, generate_target
 import math
 
 # Display Screen
@@ -35,21 +34,21 @@ WIDTH_LINE = 2
 # Font
 FONT_PATH = "material/Material_Sans.ttf"
 FONT_SIZE = 20
-
-
-# Objects
-CIRCLE_PATH = "material/icons8-circle-30.png"
-CIRCLE_IMG = pg.image.load(CIRCLE_PATH)
-
-SQUARE_PATH = "material/icons8-square-30.png"
-SQUARE_IMG = pg.image.load(SQUARE_PATH)
-
-TRIANGLE_PATH = "material/icons8-triangle-30.png"
-TRIANGLE_IMG = pg.image.load(TRIANGLE_PATH)
+GAME_OVER_FONT_SIZE = 50
+MESSAGE_FONT_SIZE = 50
 
 # Score
 score = 0
 
+# Target
+TARGET = generate_target()
+
+# Music 
+EARN_SCORE_SOUND_PATH = "material/pickupCoin.wav"
+LOSE_SCORE_SOUND_PATH = "material/hitHurt.wav"
+
+# Number of Objects
+NUMBER_OF_OBJECTS = 15
 
 def player(x: int,
            y: int) -> None:
@@ -65,61 +64,132 @@ def timer_text(time: int) -> str:
 
 def score_text(score: int) -> None:
     font = pg.font.Font(FONT_PATH, FONT_SIZE)
-    text = font.render(f"{score}", True, "black", COLOR_BACKGROUND)
+    text = font.render(f"SCORE: {score}", True, "black", COLOR_BACKGROUND)
     text_box = text.get_rect()
-    text_box = (750, 5)
+    text_box = (710, 5)
     screen.blit(text, text_box)
 
+shape_lst = []
+[shape_lst.append(Shape()) for _ in range(NUMBER_OF_OBJECTS)]
 
 
-def draw_objects() -> tuple:
-    lst = [SQUARE_IMG, CIRCLE_IMG, TRIANGLE_IMG]
-    
-    x = randint(-10, 750)
-    y = randint(30, 550)
-    screen.blit(choice(lst), (x, y))
-    
+
+def draw_objects(shape) -> tuple:
+    shape.draw(screen)
+    x , y = shape.coordinates()
     return x, y
 
-def is_collision(object_x: int,
-                 object_y: int,
-                 player_x: int,
-                 player_y: int) -> bool:
+def is_collision(shape: Shape,
+                player_x: int,
+                player_y: int) -> bool:
+    global score
     
-    distance = math.sqrt(math.pow(object_x - player_x, 2) + math.pow(object_y - player_y, 2))
-
-    if distance < 10:
-        return True
+    if shape:
+        object_x, object_y = shape.coordinates()
+    
+        distance = math.sqrt(math.pow(object_x - player_x, 2) + math.pow(object_y - player_y, 2))
+        if shape.is_exists:
+            if distance < 20:
+                if shape.name == TARGET:
+                    score += 5
+                    play_music(True)
+                else: 
+                    score -= 2
+                    play_music(False)
+                    
+                shape.death()
+                shape_lst.remove(shape)
+                del shape
+                
+            else:
+                return False
     else:
-        return False
+        return 
+
+def play_music(entry: bool) -> None:
     
+    EARN_SCORE_SOUND = pg.mixer.Sound(EARN_SCORE_SOUND_PATH)
+    LOSE_SCORE_SOUND = pg.mixer.Sound(LOSE_SCORE_SOUND_PATH)
     
+    if entry:
+        pg.mixer.Sound.play(EARN_SCORE_SOUND)
+    else:
+        pg.mixer.Sound.play(LOSE_SCORE_SOUND)
+        
+
+
+def game_over_text(time):
+    
+    GAME_OVER_TEXT = f'''GAME OVER SCORE: {score}, TIME: {time}'''
+    
+    font = pg.font.Font(FONT_PATH, GAME_OVER_FONT_SIZE)
+    text = font.render(GAME_OVER_TEXT, True, COLOR_BACKGROUND, "black")
+    text_box = text.get_rect()
+    text_box.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    screen.blit(text, text_box) 
+    pg.time.wait(1000)
+    
+
+
+def is_game_end(shape_lst, TARGET, time):
+    lst = []
+    
+    for shape in shape_lst:
+        
+        if shape.name != TARGET:
+            lst.append(False)
+        else:
+            lst.append(True)
+            
+    if not any(lst):
+        game_over_text(time)
+        
+def message_text():
+    screen.fill(COLOR_BACKGROUND)
+    font = pg.font.Font(FONT_PATH, MESSAGE_FONT_SIZE)
+    text = font.render(f"The TARGET is {TARGET}", True, "black", COLOR_BACKGROUND)
+    text_box = text.get_rect()
+    text_box.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    screen.blit(text, text_box)
+
 def main() -> None:
+    
     player_x = 760
     player_y = 550
     
-    pg.init()    
+    global score
     
+    pg.init()    
+    pg.mixer.init()
+    
+    keys = pg.key.get_pressed()
+    
+    main_screen = False
     running = True
+    
     while running:
         
-        screen.fill(COLOR_BACKGROUND)
-        screen.blit(TIMER_IMG, TIMER_X_Y)
-        pg.draw.line(screen, COLOR_LINE, START_LINE, END_LINE, WIDTH_LINE)
-        
-        time = pg.time.get_ticks() // 1000
-        timer_text(time)
-        
-        
-        object_x, object_y = draw_objects()
-        
-        is_collision(object_x, object_y, player_x, player_y)
+        if main_screen == True:
+            screen.fill(COLOR_BACKGROUND)
+            screen.blit(TIMER_IMG, TIMER_X_Y)
+            pg.draw.line(screen, COLOR_LINE, START_LINE, END_LINE, WIDTH_LINE)
             
+            time = pg.time.get_ticks() // 1000
             
-        score_text(score)
-        
-        keys = pg.key.get_pressed() 
-        
+            timer_text(time)
+            
+            for shape in shape_lst:
+                draw_objects(shape)
+                
+                if shape:
+                    is_collision(shape, player_x, player_y)
+            
+            score_text(score)
+            
+            is_game_end(shape_lst, TARGET, time)
+        else:
+            message_text()
+            
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
@@ -132,6 +202,10 @@ def main() -> None:
             player_y -= VALUE
         if keys[pg.K_DOWN]:
             player_y += VALUE
+        if keys[pg.K_q]:
+            running = False
+        if keys[pg.K_c]:
+            main_screen = True
         
         
         if player_x <= -10:
