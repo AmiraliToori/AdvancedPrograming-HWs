@@ -1,1 +1,1 @@
-object_exists = True
+print(generate_target())
