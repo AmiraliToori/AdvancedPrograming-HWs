@@ -15,7 +15,7 @@ screen = pg.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # Player
 PLAYER_ICON_PATH = "material/icons8-human-50.png"
 PLAYER_IMG = pg.image.load(PLAYER_ICON_PATH)
-VALUE = 0.2
+SPEED = 0.2
 
 # Timer Icon
 TIMER_ICON_PATH = "material/icons8-timer-30.png"
@@ -118,10 +118,10 @@ def play_music(entry: bool) -> None:
         
 
 
-def game_over_text(time):
+def game_over_text(time: int) -> None:
     
     GAME_OVER_TEXT = f'''GAME OVER SCORE: {score}, TIME: {time}'''
-    
+    screen.fill(COLOR_BACKGROUND)
     font = pg.font.Font(FONT_PATH, GAME_OVER_FONT_SIZE)
     text = font.render(GAME_OVER_TEXT, True, COLOR_BACKGROUND, "black")
     text_box = text.get_rect()
@@ -131,7 +131,8 @@ def game_over_text(time):
     
 
 
-def is_game_end(shape_lst, TARGET, time):
+def is_game_end(shape_lst: list,
+                TARGET: str) -> int:
     lst = []
     
     for shape in shape_lst:
@@ -142,9 +143,12 @@ def is_game_end(shape_lst, TARGET, time):
             lst.append(True)
             
     if not any(lst):
-        game_over_text(time)
+        return 2
+    else:
+        return 1
+    
         
-def message_text():
+def message_text() -> None:
     screen.fill(COLOR_BACKGROUND)
     font = pg.font.Font(FONT_PATH, MESSAGE_FONT_SIZE)
     text = font.render(f"The TARGET is {TARGET}", True, "black", COLOR_BACKGROUND)
@@ -162,50 +166,58 @@ def main() -> None:
     pg.init()    
     pg.mixer.init()
     
-    keys = pg.key.get_pressed()
-    
-    main_screen = False
+    num = 0
     running = True
     
     while running:
         
-        if main_screen == True:
-            screen.fill(COLOR_BACKGROUND)
-            screen.blit(TIMER_IMG, TIMER_X_Y)
-            pg.draw.line(screen, COLOR_LINE, START_LINE, END_LINE, WIDTH_LINE)
+        match num:
             
-            time = pg.time.get_ticks() // 1000
-            
-            timer_text(time)
-            
-            for shape in shape_lst:
-                draw_objects(shape)
+            case 1:
+                screen.fill(COLOR_BACKGROUND)
+                screen.blit(TIMER_IMG, TIMER_X_Y)
+                pg.draw.line(screen, COLOR_LINE, START_LINE, END_LINE, WIDTH_LINE)
                 
-                if shape:
-                    is_collision(shape, player_x, player_y)
-            
-            score_text(score)
-            
-            is_game_end(shape_lst, TARGET, time)
-        else:
-            message_text()
+                # if screen_option != 2:
+                time = pg.time.get_ticks() // 1000
+                
+                timer_text(time)
+                
+                for shape in shape_lst:
+                    draw_objects(shape)
+                    
+                    if shape:
+                        is_collision(shape, player_x, player_y)
+                
+                num = is_game_end(shape_lst, TARGET)
+                
+                score_text(score)
+                
+            case 2: 
+                game_over_text(time)
+                
+            case 0:
+                message_text()
             
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
         
+        keys = pg.key.get_pressed()
+        
         if keys[pg.K_RIGHT]:
-            player_x += VALUE
+            player_x += SPEED
         if keys[pg.K_LEFT]:
-            player_x -= VALUE
+            player_x -= SPEED
         if keys[pg.K_UP]:
-            player_y -= VALUE
+            player_y -= SPEED
         if keys[pg.K_DOWN]:
-            player_y += VALUE
+            player_y += SPEED
         if keys[pg.K_q]:
             running = False
-        if keys[pg.K_c]:
-            main_screen = True
+        if keys[pg.K_SPACE]:
+            num = 1
+            
         
         
         if player_x <= -10:
