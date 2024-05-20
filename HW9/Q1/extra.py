@@ -43,21 +43,3 @@ class Shape:
     def coordinates(self) -> tuple:
         return self.x, self.y
     
-
-class Timer:
-    
-    
-    def __init__(self) -> None:
-        self.time = pg.time.get_ticks() // 1000
-    
-    def end(self) -> float:
-        JUST_ONCE = True
-        if JUST_ONCE:
-            time = self.time
-            JUST_ONCE = False
-            return time
-
-
-time = Timer()
-
-print(time.end())
