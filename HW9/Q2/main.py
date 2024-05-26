@@ -3,6 +3,7 @@ import pygame as pg
 from models import game_screen, bullet, target, player
 from models.objects import DrawText
 from icecream import ic
+
 # Display option
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -16,13 +17,10 @@ GAME_OVER_X = 50
 GAME_OVER_Y = 250
 
 
-
-
-
 def main():
     run = True
     screen_num = 1
-    velocity_value = 2
+    velocity_value = 10
     
     pg.init()
     pg.mixer.init()
@@ -203,30 +201,5 @@ def main():
 if __name__ == "__main__":
     main()
     pg.quit()
-    
-    
-    
-    
-    
-
-
-            # dest_x, dest_y = pg.mouse.get_pos()
-
-            # hypothesis = math.sqrt((dest_x - gamer.x)**2 + (dest_y - gamer.y)**2)
-            # opposite_edge = math.sqrt(0 + (dest_y - gamer.y)**2)
-
-            # angle_degree = math.degrees(math.acos(opposite_edge / hypothesis))
-
-            # print(angle_degree)
-
-            # # u = velocity
-            # alpha = np.radians(angle_degree)
-            # max_range = velocity**2 * np.sin(2*alpha)/gravity
-            # max_height = velocity**2 * (np.sin(alpha))**2 / (2*gravity)
-            # x_array = np.linspace(0, max_range, 20)
-            # y_array = x_array * np.tan(alpha) - (1/2)* (gravity*x_array**2)/(velocity**2*(np.cos(alpha))**2)
-
-            # print(x_array)
-            # print(y_array)
             
     
