@@ -29,3 +29,9 @@ class Player:
         
     def decrease_score(self) -> None:
         self.score -= 3
+    
+    def decrease_lives(self) -> None:
+        self.lives -= 1
+        
+    def reset_lives(self) -> None:
+        self.lives = 3
