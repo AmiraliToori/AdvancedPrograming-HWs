@@ -10,8 +10,8 @@ class Target:
     
     def __init__(self, screen) -> None:
         self.screen = screen
-        self.x = randint(300, 760)
-        self.y = randint(200, 500)
+        self.x = randint(40, 760)
+        self.y = randint(30, 300)
         self.is_alive = True
         self.target = TARGET_IMG
         self.rect = TARGET_IMG.get_rect(center = (self.x, self.y))
