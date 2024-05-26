@@ -39,7 +39,7 @@ class Bullet:
         
         self.gravity = 9.8
         self.velocity = velocity
-    
+        self.rect = self.bullet.get_rect(center = self.pos)
     
     def update(self, time_throw):
         
@@ -55,6 +55,6 @@ class Bullet:
 
     def draw(self, screen):
         bullet_rect = self.bullet.get_rect(center = self.pos)
-        ic(bullet_rect)
+        ic(self.rect)
         screen.blit(self.bullet, bullet_rect)
         
