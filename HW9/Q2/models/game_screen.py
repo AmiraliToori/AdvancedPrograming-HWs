@@ -107,3 +107,17 @@ class GameScreen:
         self.timer_icon.draw()
         self.timer_text.draw()
         self.velocity.draw()
+
+
+
+
+
+
+    
+ 
+        
+        
+        
+    
+    
+    
