@@ -29,32 +29,37 @@ class Bullet:
         else:
             self.dir = (self.dir[0]/length, self.dir[1]/length)
             
-        angle = math.degrees(math.atan2(-self.dir[1], self.dir[0]))
-
+        angle = math.atan2(-self.dir[1], self.dir[0])
+        ic(angle)
         self.bullet = BALL_IMG
-        self.bullet = pg.transform.rotate(self.bullet, angle)
+        self.bullet = pg.transform.rotate(self.bullet, math.degrees(angle))
         
         self.velocity_x = velocity * math.cos(angle)
         self.velocity_y = velocity * math.sin(angle)
         
+       
         self.gravity = 9.8
         self.velocity = velocity
         self.rect = self.bullet.get_rect(center = self.pos)
+        self.start_time = pg.time.get_ticks()
     
     def update(self, time_throw):
+    
+        # self.pos = (self.pos[0]+self.dir[0]*self.velocity, # mouse_x + x * velocity
+        #             self.pos[1]+self.dir[1]*self.velocity) # mouse_y + y * velocity
+        
+        current_time = pg.time.get_ticks()
+        time_throw = (current_time - self.start_time) / 1000.0  # Convert to seconds
         
         
-        # dist_x = (self.velocity_y * time_throw * -0.5 * self.gravity * (time_throw)**2)
-        # dist_y =  self.velocity_x * time_throw
-        # new_x = round(dist_x + Player.PLAYER_X)
-        # new_y = round(Player.PLAYER_Y - dist_y)
-        # self.pos = (new_x, new_y)
+        new_x = self.pos[0] + self.velocity_x * time_throw
+        new_y = self.pos[1] - (self.velocity_y * time_throw - 0.5 * self.gravity * time_throw ** 2)
         
-        self.pos = (self.pos[0]+self.dir[0]*self.velocity, 
-                    self.pos[1]+self.dir[1]*self.velocity)
-
+        self.pos = [new_x, new_y]
+        
+        
+        
     def draw(self, screen):
         bullet_rect = self.bullet.get_rect(center = self.pos)
-        ic(self.rect)
         screen.blit(self.bullet, bullet_rect)
         
