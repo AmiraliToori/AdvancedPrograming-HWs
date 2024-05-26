@@ -14,11 +14,10 @@ class Target:
         self.y = randint(200, 500)
         self.is_alive = True
         self.target = TARGET_IMG
-        
+        self.rect = TARGET_IMG.get_rect(center = (self.x, self.y))
         
     def draw(self) -> None:
-        target_rect = self.target.get_rect(center = (self.x, self.y))
-        self.screen.blit(self.target, target_rect)
+        self.screen.blit(self.target, self.rect)
         
     def destroy(self):
         self.is_alive = False
