@@ -9,7 +9,7 @@ def main():
     
     window = tk.Tk()
     
-    window.geometry("800x600")
+    window.geometry("700x450")
     window.title("BMI Calculator")
     
     def reset():
@@ -25,7 +25,9 @@ def main():
         for widget in window.winfo_children():
             if isinstance(widget, tk.Radiobutton):
                 sex_var.set(None)
-    
+        reset_btn['state'] = 'disabled'
+        enter_btn['state'] = 'disabled'
+
         
     def bmi_calculator():
         height = height_var.get()
@@ -36,12 +38,13 @@ def main():
         body_mass_index = round(weight / height**2, 2)
         
         body_mass_index_text = tk.Text(window,
-                                height = 5,
-                                width = 30)
-        body_mass_index_text.insert(tk.END, body_mass_index)
-        body_mass_index_text.place(x = 400, y = 550)
-        body_mass_index_text.pack()
+                                width = 15,
+                                height = 1,
+                                font = ("Arial", 20, "bold"))
     
+        body_mass_index_text.insert(tk.END ,f"BMI Value:{body_mass_index}")
+        body_mass_index_text.pack()
+        body_mass_index_text.place(x = 280, y = 400)
     
     
     title = tk.Label(window,
@@ -67,7 +70,7 @@ def main():
     STICKY = tk.W + tk.E
     
     height_label = tk.Label(frame,
-                            text = "Height:",
+                            text = "Height(m):",
                             font = LABEL_FONT)
     height_label.grid(row = 0,
                       column = 0,
@@ -87,7 +90,7 @@ def main():
     ###################################
     
     weight_label = tk.Label(frame,
-                            text = "Weight:",
+                            text = "Weight(kg):",
                             font = LABEL_FONT)
     weight_label.grid(row = 1,
                       column = 0,
@@ -160,21 +163,34 @@ def main():
     enter_btn = tk.Button(window,
                           text = "ENTER",
                           font = ("Arial", 15, "bold"),
-                          command = bmi_calculator)
-    enter_btn.place()
+                          command = bmi_calculator,
+                          state = "disabled")
     enter_btn.pack()
+    enter_btn.place(x = 150, y = 350)
     
     reset_btn = tk.Button(window,
                           text = "RESET",
                           font = ("Arial", 15, "bold"),
                           bg = "red",
-                          command = reset)
-    reset_btn.place(x = 370, y = 500)
+                          command = reset,
+                          state = "disabled")
     reset_btn.pack()
+    reset_btn.place(x = 500, y = 350)
+    
+    def check(*args):
+        if height_var.get() and weight_var.get() and age_var.get():
+            enter_btn.config(state = "normal")
+            reset_btn.config(state = "normal")
     
     
+    height_var.trace_add("write", check)
+    weight_var.trace_add("write", check)
+    age_var.trace_add("write", check)
+    
+    
+    window.resizable(False, False)
     window.mainloop()
-    pass
+    
 
 
 
