@@ -138,7 +138,13 @@ def main():
                               bg = 'lightgreen',
                               command = calculate,
                               state = "disabled").pack()
-     
+    
+    # def check(*args):
+    #     if (str(input_var.get())).isnumeric:
+    #         calculate_btn.configure(state = 'normal')
+    
+    
+    # input_var.trace_add('write', check) 
     
     window.mainloop()
 
