@@ -26,4 +26,4 @@ def delete_e(dictionary, text):
     return dictionary
     
 
-ic(delete_e(dictionary, text_input))
+print(delete_e(dictionary, text_input))

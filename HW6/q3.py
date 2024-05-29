@@ -31,7 +31,7 @@ while flag:
 def equal_pairs(lst, sum):
     equal_list = []
     for i in range(lst_length):
-        for j in range(i ,lst_length):
+        for j in range(lst_length):
             if lst[i] + lst[j] == number and ([lst[i], lst[j]]) not in equal_list:
                 equal_list.append([lst[i], lst[j]])
     return equal_list

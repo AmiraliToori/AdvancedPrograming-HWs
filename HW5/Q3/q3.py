@@ -63,7 +63,7 @@ print(img, img.mode)
 encoded_image_file = "answer" + "picture.bmp"
 
 
-secret_msg = "Hello this is a hidden message in the picture from Amirali Toori"
+secret_msg = "Hello this"
 print(len(secret_msg))  
 
 img_encoded = encode_image(img, secret_msg)

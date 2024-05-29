@@ -9,17 +9,23 @@ with open("/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedProgr
 
 file_path = "/home/glados/Documents/AmirAli Toori/Lessons/Python/HWs/AdvancedPrograming-HWs/HW5/Q1/mytext.txt"
 
-if not os.path.exists(file_path):
-    with open(file_path, "w") as f:
-        my_text = f.write(input("Please enter the desire string that you want: "))
+# if not os.path.exists(file_path):
+#     with open(file_path, "w") as f:
+#         my_text = f.write(input("Please enter the desire string that you want: "))
     
-else:
-    with open(file_path, "w") as f:
-        my_text = f.write(input("Please enter the desire string that you want: "))
+# else:
+#     with open(file_path, "w") as f:
+#         my_text = f.write(input("Please enter the desire string that you want: "))
 
-with open(file_path, "r") as f:
-    my_text = f.read()
-    
+# with open(file_path, "r") as f:
+#     my_text = f.read()
+
+# file_a
+
+with open("input.txt", "r") as f:
+    my_text = f.readline()
+
+
     
 lower = list(lower)
 upper = list(upper)
@@ -57,8 +63,13 @@ def decryptText(my_text):
 encrypted_text = encryptText(my_text)
 print(f"The encrypted text is : {encrypted_text}")
 print(f"The decrypted text is : {decryptText(encrypted_text)}")
+value = decryptText(encrypted_text)
 
+with open("answer.txt", "w") as f:
+    f.write(value)
 
+with open("encryptedfile.txt", "w") as f:
+    f.write(encrypted_text)
 
 
 
