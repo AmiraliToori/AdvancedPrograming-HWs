@@ -44,8 +44,8 @@ Lessons:{self.lessons} '''
     def change_score(self, lesson_id, score) -> None:
         if score > 20 or score < 0:
             raise ValueError("The new score is not valid!")
-        elif len(lesson_id) != 6:
-            raise ValueError("The entered lesson id is not valid!")
+        # elif len(lesson_id) != 6:
+        #     raise ValueError("The entered lesson id is not valid!")
         
         for lesson in self.lessons:
             
@@ -147,5 +147,5 @@ if __name__ == "__main__":
     # print(amirali_toori.change_score(151214, 20))
     # print(amirali_toori.calculate_average())
 
-    # print(amirali_toori.drop_course(151215))
-    # print(str(amirali_toori))
+    print(amirali_toori.drop_course(151215))
+    print(str(amirali_toori))
