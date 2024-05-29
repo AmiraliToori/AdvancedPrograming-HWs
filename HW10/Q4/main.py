@@ -11,6 +11,10 @@ def main():
             remainder = decimal % base
             decimal = decimal // base
             lst.append(str(remainder))
+            
+            if lst[-1] == '0':
+                lst.remove(lst[-1])
+            
         return ''.join(reversed(lst))
     
             
@@ -90,7 +94,7 @@ def main():
         STICKY = tk.W + tk.E
         
         decimal_label = tk.Label(frame_result,
-                                 text = f"Decimal:{decimal}",
+                                 text = f"Decimal: {decimal}",
                                  font = LABEL_FONT)
         decimal_label.grid(row = 0,
                            column = 0,
@@ -98,7 +102,7 @@ def main():
                            padx = PAD_VALUE)
         
         four_label = tk.Label(frame_result,
-                                 text = f"Base 4:{base_4}",
+                                 text = f"Base 4: {base_4}",
                                  font = LABEL_FONT)
         four_label.grid(row = 0,
                            column = 1,
@@ -106,7 +110,7 @@ def main():
                            padx = PAD_VALUE)
         
         six_label = tk.Label(frame_result,
-                                 text = f"Base 6:{base_6}",
+                                 text = f"Base 6: {base_6}",
                                  font = LABEL_FONT)
         six_label.grid(row = 0,
                            column = 2,
@@ -114,7 +118,7 @@ def main():
                            padx = PAD_VALUE)
         
         octan_label = tk.Label(frame_result,
-                                 text = f"Octan:{octan}",
+                                 text = f"Octan: {octan}",
                                  font = LABEL_FONT)
         frame_result.pack()
         
@@ -137,14 +141,17 @@ def main():
                               font = ("Arial", 15),
                               bg = 'lightgreen',
                               command = calculate,
-                              state = "disabled").pack()
+                              state = 'disabled')
     
-    # def check(*args):
-    #     if (str(input_var.get())).isnumeric:
-    #         calculate_btn.configure(state = 'normal')
+    def check(*args):
+        if (str(input_var.get())).isnumeric:
+            calculate_btn.config(state = 'normal')
+        else:
+            calculate_btn.config(state = 'disabled')
     
+    input_var.trace_add('write', check)
     
-    # input_var.trace_add('write', check) 
+    calculate_btn.pack()
     
     window.mainloop()
 
