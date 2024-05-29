@@ -34,16 +34,16 @@ if __name__ == "__main__":
     year_1 = AverageAnnualPrecipitation(per_month_values)
 
 
-    print(str(year_1))
-    print(repr(year_1))
-
-    # print(year_1.average())
-
-
-    # year_1.add(100)
-
     # print(str(year_1))
+    # print(repr(year_1))
 
-    # print(year_1.average())
+    print(year_1.average())
+
+
+    year_1.add(100)
+
+    print(str(year_1))
+
+    print(year_1.average())
     
         
