@@ -87,10 +87,11 @@ class Motorcycle(Bicycle):
                  speed: int,
                  gear: int,
                  engine: str,
+                 cycle: int,
                  power: int) -> None:
         self.engine = engine
         self.power = power
-        super().__init__(price, speed, gear)
+        super().__init__(price, speed, cycle, gear)
     
     def __str__(self) -> str:                     
         return f'''The price of this motorcycle is: {self.price},
@@ -112,20 +113,20 @@ Power: {self.power}'''
 if __name__ == "__main__":
     
     # vehicle_0 = Vehicle()
-    vehicle_1 = Bicycle(1200, 10, 5)
-    vehicle_2 = Tricycle(600, 5, 5)
-    vehicle_3 = Motorcycle(3500, 200, 5, "Pride", 45000)
+    vehicle_1 = Bicycle(1200, 10, 5, 2)
+    vehicle_2 = Tricycle(600, 5, 5, 1)
+    vehicle_3 = Motorcycle(3500, 200, 5, "Pride", 2, 450)
 
 
     parking_lot = [vehicle_1, vehicle_2, vehicle_3]
 
-    # print(repr(vehicle_1))
-    # vehicle_1.speedup(20)
-    # print(repr(vehicle_1))
+    print(repr(vehicle_1))
+    vehicle_1.speedup(20)
+    print(repr(vehicle_1))
 
 
-    # print(repr(vehicle_2))
-    # print(str(vehicle_2))
+    print(repr(vehicle_2))
+    # print(str(object=vehicle_2))
 
     # print(repr(vehicle_3))
     # print(str(vehicle_3))
