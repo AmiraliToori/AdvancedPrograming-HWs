@@ -15,7 +15,7 @@ values_lists = df.values.tolist()
 array = np.array(values_lists)
 
 
-def plot():
+def plot(event):
     global figure_picture
     colors = ['#ff0c1f', '#19852d', '#7b0573', '#3b0025', '#000046']
     row, column = np.shape(array)
@@ -119,14 +119,7 @@ entry = tk.Entry(window,
 entry.pack()
 entry.place(x = 0, y = 0, width = 700)
 
-
-button = tk.Button(window,
-                   text = "Plot",
-                   command = plot,
-                   font = ('Arial', 12, 'bold'),
-                   bg = 'white')
-button.pack()
-button.place(x = 700, y = 0)
+entry.bind('<Return>', lambda event: plot(event))
 
 window.mainloop()
 
