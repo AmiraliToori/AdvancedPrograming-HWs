@@ -5,6 +5,7 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 import numpy as np 
 from icecream import ic
+from PIL import ImageTk, Image
 
 df = pd.read_excel('file.xlsx')
 names = df['names'].tolist()
@@ -15,7 +16,8 @@ array = np.array(values_lists)
 
 
 def plot():
-    
+    global figure_picture
+    colors = ['#ff0c1f', '#19852d', '#7b0573', '#3b0025', '#000046']
     row, column = np.shape(array)
     names_plot = []
     values = []
@@ -35,10 +37,11 @@ def plot():
                     temp_lst = []
     
     
-    fig, ax = plt.subplots(figsize = (13, 6))
+    fig, ax = plt.subplots(figsize = (13.2, 6.9))
     
     
     j = 0
+    k = 0
     for value in values:
         dictionary = {'rank' : [int(x) for x in value],
                     'year' : years}
@@ -50,21 +53,34 @@ def plot():
         
         i = 0
         while i <= 12:
-            ax.annotate(f"{names_plot[j]} {ranks[i]}", (years[i] + 0.5, ranks[i] - 5))
+            
+            ax.text(
+                years[i] + 0.5,
+                ranks[i] - 5,
+                f"{names_plot[j]} {ranks[i]}",
+                color = colors[k],
+                )
+            
             i += 1
             
             if i == 13 and len(names_plot) > j:
                 j += 1
                 
         
-            ax.plot(data_frame['year'], data_frame['rank'])
+            ax.plot(
+                data_frame['year'],
+                data_frame['rank'],
+                color = colors[k],
+                linewidth = 1
+                )
+        k += 1
     
     for x in range(1900, 2030, 10):
-        ax.axvline(x, color = 'black')
+        ax.axvline(x, color = 'black', linewidth = 1)
     
     
     
-    ax.axhline(1, color = 'black')
+    ax.axhline(1, color = 'black', linewidth = 1)
     
     ax.set_xlim(1900, 2030)
     ax.set_ylim(-40, 1000)
@@ -81,7 +97,10 @@ def plot():
     
     ax.spines[['top', 'right']].set_visible(False)
     
-    plt.show()
+    fig.savefig("plot.png", bbox_inches='tight', dpi = 122)
+    figure_picture = ImageTk.PhotoImage(Image.open("plot.png"))
+    
+    tk.Label(window, image = figure_picture).place(y = 31)
 
     
     
@@ -90,43 +109,24 @@ window = tk.Tk()
 window.geometry("1280x720")
 window.title("Q7")
 
-names_input = tk.StringVar()
+window['bg'] = 'white'
 
+names_input = tk.StringVar()
 
 entry = tk.Entry(window, 
                  textvariable = names_input,
                  font = ('Arial', 15))
 entry.pack()
-entry.place(x = 0, y = 0)
+entry.place(x = 0, y = 0, width = 700)
 
 
 button = tk.Button(window,
                    text = "Plot",
                    command = plot,
-                   font = ('Arial', 12, 'bold'))
+                   font = ('Arial', 12, 'bold'),
+                   bg = 'white')
 button.pack()
-button.place(x = 0, y= 30)
+button.place(x = 700, y = 0)
 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#################################################################
 window.mainloop()
 
