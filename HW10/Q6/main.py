@@ -3,8 +3,7 @@
 import pandas as pd
 import tkinter as tk
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk) 
+import numpy as np 
 from icecream import ic
 
 df = pd.read_excel('file.xlsx')
@@ -16,12 +15,13 @@ array = np.array(values_lists)
 
 
 def plot():
-    plt.figure().clear()
+    
     row, column = np.shape(array)
     names_plot = []
     values = []
     temp_lst = []
-
+    
+    
     for name in names:
         if name in names_input.get():
             
@@ -34,27 +34,40 @@ def plot():
                     values.append(temp_lst)
                     temp_lst = []
     
-   
-    fig = plt.Figure(figsize = (13, 6), 
-                 dpi = 100) 
-   
-    ax = fig.add_subplot(111) 
+    
+    fig, ax = plt.subplots(figsize = (13, 6))
     
     
+    j = 0
     for value in values:
         dictionary = {'rank' : [int(x) for x in value],
-                      'year' : years}
-        ic(dictionary)
-        data_frame = pd.DataFrame(dictionary)
-        ic(data_frame)
+                    'year' : years}
         
-        ax.plot(data_frame['year'], data_frame['rank'])
+        data_frame = pd.DataFrame(dictionary)
+        
+
+        ranks = list(dictionary.values())[0]
+        
+        i = 0
+        while i <= 12:
+            ax.annotate(f"{names_plot[j]} {ranks[i]}", (years[i] + 0.5, ranks[i] - 5))
+            i += 1
+            
+            if i == 13 and len(names_plot) > j:
+                j += 1
+                
+        
+            ax.plot(data_frame['year'], data_frame['rank'])
     
     for x in range(1900, 2030, 10):
         ax.axvline(x, color = 'black')
-        
+    
+    
+    
+    ax.axhline(1, color = 'black')
+    
     ax.set_xlim(1900, 2030)
-    ax.set_ylim(0, 1000)
+    ax.set_ylim(-40, 1000)
     
     ax.invert_yaxis()
     
@@ -66,17 +79,11 @@ def plot():
     
     ax.margins(x = 0, y = 0)
     
-    canvas = FigureCanvasTkAgg(fig, 
-                               master = window)   
-    canvas.draw() 
-   
-    canvas.get_tk_widget().pack() 
-   
-    toolbar = NavigationToolbar2Tk(canvas, 
-                                   window) 
-    toolbar.update() 
-  
-    canvas.get_tk_widget().pack()
+    ax.spines[['top', 'right']].set_visible(False)
+    
+    plt.show()
+
+    
     
     
 window = tk.Tk()
