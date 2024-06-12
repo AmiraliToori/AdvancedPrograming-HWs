@@ -3,11 +3,11 @@ import re
 
 user_input = input("Please enter a string:")
 
-alpha_pattern = re.compile(r"[a-zA-Z]")
+alpha_pattern = re.compile(r"[a-zA-Z\s]")
+ip_pattern = re.compile(r"[0-9]{1,3}[\.]{1}")
 
-print(alpha_pattern.findall(user_input))
 
-if not alpha_pattern.findall(user_input):
+if not alpha_pattern.findall(user_input) and ip_pattern.findall(user_input):
     
     ip_lst = user_input.split('.')
     
