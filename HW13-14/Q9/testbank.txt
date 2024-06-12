@@ -1,0 +1,138 @@
+Question: What is the largest country in the world?
+
+Ans1: Iran Ans2: China Ans3: Russia Ans4: USA
+
+CorrectAnswer: 3
+
+
+Question: Who was the creator of God of War series?
+
+Ans1: Cory-Barlog Ans2: Hideo-Kojima Ans3: David-Geoff Ans4: Sam-Lake
+
+CorrectAnswer: 3
+
+
+Question: Who was the compressor of Hades?
+
+Ans1: Darren-Korb Ans2: Jeremy-Soule Ans3: Hans-Zimmer Ans4: Inon-Zur
+
+CorrectAnswer: 1
+
+
+Question: What year the first game of the bioshock series released?
+
+Ans1: 2009 Ans2: 2008 Ans3: 2010 Ans4: 2007
+
+CorrectAnswer: 4
+
+
+Question: The Studio behind the Transistor?
+
+Ans2: Moon-studio Ans2: Supergiant-Games Ans3: Gearbox Ans4: Arkane-Lyon
+
+CorrectAnswer: 2
+
+
+Question: Which these game, the Ghost died?
+
+Ans1:COD-MW1 Ans2:COD-MW3 Ans3:COD-MW2 Ans4:none-of-theme
+
+CorrectAnswer: 3
+
+
+Question: Who was the antagonist in Portal 2?
+
+Ans1: GLaDOS Ans2: Wheatley Ans3: Combine Ans4: option1&2
+
+CorrectAnswer: 2
+
+
+Question: What is the formula of Circle's circumference?
+
+Ans1: 4/3pr^3  Ans2: pr^2 Ans3: 2pr Ans4: none
+
+CorrectAnswer: 3
+
+
+Question: What cause of death of the Hitler?
+
+Ans1: Suicide Ans2: Car-accident Ans3: diabetes Ans4: Cancer
+
+CorrectAnswer: 1
+
+
+Question: What is the largest planet in our solar system?
+
+Ans1: Earth Ans2: Saturn Ans3: Uranus Ans4: Jupiter
+
+CorrectAnswer: 4
+
+
+Question: Which country won the FIFA World cup in 2018?
+
+Ans1: Germany Ans2: Brazil Ans3: France Ans4: Argentina
+
+CorrectAnswer: 3
+
+
+Question: What is the tallest mountain in the world?
+
+Ans1: K2 Ans2: Mount-Everest Ans3: Demavend Ans4: Aras
+
+CorrectAnswer: 2
+
+
+Question: What is the chemical formula for table salt?
+
+Ans1: H2O Ans2: NaCl Ans3: CO2 Ans4: KCl
+
+CorrectAnswer: 2
+
+
+Question: How many continents are there?
+
+Ans1: 5 Ans2: 6 Ans3: 7 Ans4: 8
+
+CorrectAnswer: 3
+
+
+Question: Which planet is closest to the Sun?
+
+Ans1: Mercury Ans2: Venus Ans3: Earth Ans4: Mars
+
+CorrectAnswer: 1
+
+
+Question: Who invented the telephone?
+
+Ans1: Thomas-Edison Ans2: Alexander-Graham-Bell Ans3: Nikola-Tesla Ans4: none
+
+CorrectAnswer: 2
+
+
+Question: Who is the author of "1984"?
+
+Ans1: George-Orwell Ans2: Aldous-Huxley Ans3: J.R.R.-Tolkien Ans4: Ray-Bradbury
+
+CorrectAnswer: 1
+
+
+Question: What is the hardest natural substance on Earth?
+
+Ans1: Gold Ans2: Iron Ans3: Diamond Ans4: Quartz
+
+CorrectAnswer: 3
+
+
+Question: Which country is known as the Land of the Rising Sun?
+
+Ans1: China Ans2: South Korea Ans3: Japan Ans4: Thailand
+
+CorrectAnswer: 3
+
+
+Question: In what year did World War II end?
+
+Ans1: 1942 Ans2: 1944 Ans3: 1945 Ans4: 1946
+
+CorrectAnswer: 3
