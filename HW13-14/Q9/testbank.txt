@@ -35,7 +35,7 @@ CorrectAnswer: 2
 
 Question: Which these game, the Ghost died?
 
-Ans1:COD-MW1 Ans2:COD-MW3 Ans3:COD-MW2 Ans4:none-of-theme
+Ans1: COD-MW1 Ans2: COD-MW3 Ans3: COD-MW2 Ans4: none-of-theme
 
 CorrectAnswer: 3
 
@@ -126,7 +126,7 @@ CorrectAnswer: 3
 
 Question: Which country is known as the Land of the Rising Sun?
 
-Ans1: China Ans2: South Korea Ans3: Japan Ans4: Thailand
+Ans1: China Ans2: South-Korea Ans3: Japan Ans4: Thailand
 
 CorrectAnswer: 3
 
